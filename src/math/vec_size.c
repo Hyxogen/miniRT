@@ -1,7 +1,6 @@
 #include "rtmath.h"
 
-#if !defined RT_SSE
-# include <math.h>
+#if !defined RT_VECTORIZE
 
 __attribute__ ((const))
 FLOAT
@@ -14,7 +13,7 @@ __attribute__ ((const))
 FLOAT
 	vec_mag(t_vec a)
 {
-	return (sqrt(vec_mag2(a)));
+	return (rt_sqrt(vec_mag2(a)));
 }
 
 __attribute__ ((const))
@@ -50,7 +49,7 @@ t_vec
 	else if (v.y > max)
 		v.y = max;
 	if (v.z < min)
-		v.y = min;
+		v.z = min;
 	else if (v.z > max)
 		v.z = max;
 	return (v);

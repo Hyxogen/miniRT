@@ -1,6 +1,6 @@
 #include "rtmath.h"
 
-#if !defined RT_SSE
+#if !defined RT_VECTORIZE
 
 t_vec
 	vec(FLOAT x, FLOAT y, FLOAT z)
