@@ -3,6 +3,9 @@
 
 #include <ft_printf.h>
 
+
+#include <stdio.h>
+
 #if defined RT_WORK_OPENCL
 
 # ifdef RT_LINUX
@@ -91,6 +94,8 @@ void
 		status = clEnqueueNDRangeKernel(cl_ctx->command_queue, cl_ctx->work_kernel, 1, NULL, global_work_size, local_work_size, 0, NULL, NULL);
 		rt_assert(status == CL_SUCCESS, "clEnqueueNDRangeKernel work_kernel failed");
 		status = clEnqueueReadBuffer(cl_ctx->command_queue, cl_ctx->result_mem, CL_TRUE, 0, sizeof(*cl_ctx->result) * RT_WORK_OPENCL_GLOBAL_SIZE, cl_ctx->result, 0, NULL, NULL);
+		if (status != CL_SUCCESS)
+			fprintf(stderr, "clEnqueReadbuffer failed with error code: %d", status);
 		rt_assert(status == CL_SUCCESS, "clEnqueueReadBuffer failed");
 		queue_send(&worker->queue, cl_ctx->result, sizeof(*cl_ctx->result) * (end - begin));
 	}

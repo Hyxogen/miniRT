@@ -14,10 +14,11 @@ void
 void
 	vector_view(t_vector *vec, t_vector *parent, size_t begin, size_t size)
 {
-	vec->data = (char *) parent->data + begin * parent->elem_size;
 	vec->size = size * parent->elem_size;
 	vec->capacity = 0;
 	vec->elem_size = parent->elem_size;
+	if (size != 0)
+		vec->data = (char *) parent->data + begin * parent->elem_size;
 }
 
 void
@@ -48,3 +49,11 @@ void
 	rt_memcpy(vector_at(vec, index), ptr, vec->elem_size);
 }
 
+void
+	vector_pop_back(t_vector *vec, t_destroy destroy)
+{
+	rt_assert(vec->size >= vec->elem_size, "pop_back on empty vector");
+	if (destroy != NULL)
+		destroy(vector_at(vec, vector_size(vec)));
+	vec->size -= vec->elem_size;
+}

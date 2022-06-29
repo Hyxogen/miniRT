@@ -3,6 +3,8 @@
 size_t
 	vector_size(t_vector *vec)
 {
+	if (vec->elem_size == 0)
+		return 0;
 	return (vec->size / vec->elem_size);
 }
 

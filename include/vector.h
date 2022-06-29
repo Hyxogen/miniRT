@@ -26,10 +26,10 @@ void	vector_init(t_vector *vec, size_t elem_size);
 void	vector_view(t_vector *vec, t_vector *parent, size_t begin, size_t size);
 void	vector_destroy(t_vector *vec, t_destroy destroy);
 void	vector_push_back(t_vector *vec, const void *ptr);
+void	vector_pop_back(t_vector *vec, t_destroy destroy);
 size_t	vector_size(t_vector *vec);
 void	*vector_at(t_vector *vec, size_t index);
 void	*vector_front(t_vector *vec);
 void	*vector_back(t_vector *vec);
 void	vector_sort(t_vector *vec, t_compare compare, void *ctx);
-
 #endif
