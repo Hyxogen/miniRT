@@ -506,8 +506,8 @@ uint32_t
 	accel_get_max_depth(const t_world *world)
 {
 	fprintf(stderr, "%f vs %f\n", 8.0 + 1.3 * log(world->primitives_count), 8.0 + 1.3 * log2(world->primitives_count));
+	return (4);
 	return (8.0 + 1.3 * log2(world->primitives_count));
-	return (8.0);
 }
 
 void
